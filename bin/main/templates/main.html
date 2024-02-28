@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" name="name" placeholder="소환사명을 입력하세요." maxlength="20" size="20" onclick="this.select()">
+
+<button type="button" id="modify-btn" th:onclick="|location.href='@{/summoner/{summonerId}(summonerId=${article.id})}'|"
+        class="btn btn-primary btn-sm">검색</button>
+</body>
+</html>
