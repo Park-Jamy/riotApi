@@ -62,9 +62,9 @@ public class SummonerController {
             System.out.println(summonerId);
             summoner = summonerService.callRiotAPISummonerByName(summonerId);
         }
-
+        System.out.println("ㅁㄴㅇㅁㄴㅇㄹㅁ" + summoner);
         model.addAttribute("summoner", summoner);
-
+        System.out.println(model);
         return "summonerInfo";
     }
 }

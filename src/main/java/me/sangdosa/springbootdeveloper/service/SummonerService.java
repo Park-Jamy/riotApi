@@ -2,6 +2,7 @@ package me.sangdosa.springbootdeveloper.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.sangdosa.springbootdeveloper.dto.SummonerDto;
+import me.sangdosa.springbootdeveloper.constant.RiotConstant;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -9,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 
 @Service
@@ -17,7 +20,7 @@ public class SummonerService {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     //@Value("${RGAPI-961e1a22-5f97-41e0-9fe5-34435d2b38d9}")
-    private String apiKey = "RGAPI-e3732906-fc3b-42a7-8de6-cc197f43dc1f";
+    private String apiKey = RiotConstant.API_KEY;
 
     public SummonerDto callRiotAPISummonerByName(String summonerName) {
 
@@ -26,9 +29,9 @@ public class SummonerService {
         String API_URL = "https://kr.api.riotgames.com";
 
         try {
+            String encodeSummonerName = URLEncoder.encode(summonerName, StandardCharsets.UTF_8.toString());
 
-
-            URL url = new URL(API_URL + "/lol/summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + apiKey);
+            URL url = new URL(API_URL + "/lol/summoner/v4/summoners/by-name/" + encodeSummonerName + "?api_key=" + apiKey);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             // 요청 방식 설정 (GET)
@@ -42,7 +45,7 @@ public class SummonerService {
             int responseCode = connection.getResponseCode();
             System.out.println("Response Code: " + responseCode);
 
-            StringBuilder response = new StringBuilder();
+            StringBuilder response;
 
             // 응답 내용(BufferedReader)을 문자열로 변환
             try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
@@ -55,6 +58,7 @@ public class SummonerService {
 
                 // 응답 내용 출력
                 System.out.println(response.toString());
+                summonerDto = objectMapper.readValue(response.toString(), SummonerDto.class);
             }
 
         } catch (IOException e) {
