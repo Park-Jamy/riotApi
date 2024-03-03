@@ -5,6 +5,41 @@
     <title>Title</title>
 </head>
 <body>
-<p th:text = "${summoner.id}"></p>
+<th:block th:if="${not #strings.isEmpty(summoner.name)}">
+    <div class="card shadow mh-100" >
+        <div class="card-body">
+            <div class="row">
+                <div class="col-5 profile-container " >
+                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/${summoner.profileIconId}.png|" th:alt="${summoner.profileIconId}" style="width:10%">
+                    <span class="ribbon" th:text="${summoner.summonerLevel}">0</span>
+                </div>
+                <div class="col-7">
+                    <th:block th:if="${summoner.name == null}">
+                        <p class="fs-6 fw-semibold text-primary" ><br/>소환사정보를 찾을 수 없습니다.</p>
+                    </th:block>
+                    <th:block th:if="${summoner.name != null}">
+                        <p class="name" th:text="${summoner.name}"></p>
+                        <p class="small time">최근 업데이트 : <span class="time" th:text="${summoner.revisionDate}"></span></p>
+                        <!--  visually-hidden  -->
+                        <div class="small">
+                            <p class="visually-hidden">summonerId : <span class="text-secondary" th:text="${summoner.id}">-</span></p>
+                            <p class="visually-hidden">accountId : <span class="text-secondary" th:text="${summoner.accountId}">-</span></p>
+                            <p class="visually-hidden">puuid : <span class="text-secondary" th:text="${summoner.puuid}">-</span></p>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+
+<div>
+    <p  th:text="${matchList}"></p>
+    <tr th:each="matchInfop : ${matchInfo}">
+        <td th:text="${matchInfop.MetadataDto.matchId}"></td>
+    </tr>
+</div>
+<!--//<div th:text="${matchInfo.metadataDto.participants}"> </div>-->
 </body>
 </html>
