@@ -3,17 +3,18 @@ package me.sangdosa.springbootdeveloper.controller;
 import lombok.RequiredArgsConstructor;
 import me.sangdosa.springbootdeveloper.dto.MatchInfoDto;
 import me.sangdosa.springbootdeveloper.dto.SummonerDto;
-import me.sangdosa.springbootdeveloper.dto.SummonerMatchDto;
 import me.sangdosa.springbootdeveloper.service.SummonerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,8 +32,8 @@ public class SummonerController {
     @GetMapping("/summoner/{summonerId}")
     public String SummonerByName(Model model, @PathVariable String summonerId) {
         SummonerDto summoner = new SummonerDto(); // 소환사 정보
-        SummonerMatchDto summonerMatch = new SummonerMatchDto(); // 매치ID
-        MatchInfoDto matchInfo = new MatchInfoDto();
+        List<String> matchList = new ArrayList<>(); // 매치ID
+        List<MatchInfoDto> matchInfo = new ArrayList<>();
 
         // 파라미터값 공백 체크
         summonerId = summonerId.replaceAll(" ","%20");
@@ -45,14 +46,13 @@ public class SummonerController {
             System.out.println(summonerId);
 
             summoner = summonerService.callRiotAPISummonerByName(summonerId);
-            //summonerMatch = summonerService.callRiotAPISummonerMatchByPuuid(summoner.getPuuid());
-            //matchInfo = summonerService.callRiotAPIMatchByMatchId(summonerMatch.getMatchId());
+            matchList = summonerService.callRiotAPISummonerMatchByPuuid(summoner.getPuuid());
+            matchInfo = summonerService.callRiotAPIMatchByMatchId(matchList);
         }
 
 
-        //System.out.println(summonerMatch);
         model.addAttribute("summoner", summoner);
-        //model.addAttribute("summonerMatch", summonerMatch);
+        model.addAttribute("matchList", matchList);
 
         return "summonerInfo";
     }

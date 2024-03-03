@@ -10,7 +10,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-5 profile-container " >
-                    <img th:src="|http://ddragon.leagueoflegends.com/cdn/10.11.1/img/profileicon/${summoner.profileIconId}.png|" th:alt="${summoner.profileIconId}" style="width:100%">
+                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/${summoner.profileIconId}.png|" th:alt="${summoner.profileIconId}" style="width:10%">
                     <span class="ribbon" th:text="${summoner.summonerLevel}">0</span>
                 </div>
                 <div class="col-7">
@@ -32,5 +32,14 @@
         </div>
     </div>
 </th:block>
+
+
+<div>
+    <p  th:text="${matchList}"></p>
+    <tr th:each="matchInfop : ${matchInfo}">
+        <td th:text="${matchInfop.MetadataDto.matchId}"></td>
+    </tr>
+</div>
+<!--//<div th:text="${matchInfo.metadataDto.participants}"> </div>-->
 </body>
 </html>
