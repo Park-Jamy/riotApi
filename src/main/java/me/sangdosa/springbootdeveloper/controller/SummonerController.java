@@ -33,7 +33,7 @@ public class SummonerController {
     public String SummonerByName(Model model, @PathVariable String summonerId) {
         SummonerDto summoner = new SummonerDto(); // 소환사 정보
         List<String> matchList = new ArrayList<>(); // 매치ID
-        List<MatchInfoDto> matchInfo = new ArrayList<>();
+        List<MatchInfoDto> matchsInfo = new ArrayList<>();
 
         // 파라미터값 공백 체크
         summonerId = summonerId.replaceAll(" ","%20");
@@ -47,12 +47,13 @@ public class SummonerController {
 
             summoner = summonerService.callRiotAPISummonerByName(summonerId);
             matchList = summonerService.callRiotAPISummonerMatchByPuuid(summoner.getPuuid());
-            matchInfo = summonerService.callRiotAPIMatchByMatchId(matchList);
+            matchsInfo = summonerService.callRiotAPIMatchByMatchId(matchList);
         }
 
 
         model.addAttribute("summoner", summoner);
         model.addAttribute("matchList", matchList);
+        model.addAttribute("matchsInfo", matchsInfo);
 
         return "summonerInfo";
     }

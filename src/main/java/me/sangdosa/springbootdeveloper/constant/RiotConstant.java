@@ -1,7 +1,7 @@
 package me.sangdosa.springbootdeveloper.constant;
 
 public class RiotConstant {
-    public static final String API_KEY = "RGAPI-2321be41-e07b-4696-815d-26f2abe38fdb";
+    public static final String API_KEY = "RGAPI-ef1d4a6b-fa61-419a-acc3-876ef8f143c1";
 
     // SUMMONER-V4, ACCOUNT-V1, LEAGE-V4
     public static final String API_SERVER_KR = "https://kr.api.riotgames.com";

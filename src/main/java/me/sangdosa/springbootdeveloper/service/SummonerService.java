@@ -58,7 +58,7 @@ public class SummonerService {
 
     public List<MatchInfoDto> callRiotAPIMatchByMatchId(List<String> matchId) {
 
-        List<MatchInfoDto> matchInfoDtos = new ArrayList<>();
+        List<MatchInfoDto> matchInfosDto = new ArrayList<>();
 
         int matchListLen = matchId.size();
         for(int i = 0; i < matchListLen; i++) {
@@ -71,9 +71,11 @@ public class SummonerService {
 
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                matchInfosDto.add(matchInfoDto);
             }
         }
-        return matchInfoDtos;
+        return matchInfosDto;
     }
 
     // Riot API와 통신
