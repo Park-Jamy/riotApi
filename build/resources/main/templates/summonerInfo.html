@@ -1,45 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
 </head>
 <body>
-<th:block th:if="${not #strings.isEmpty(summoner.name)}">
-    <div class="card shadow mh-100" >
+
+<th:block>
+    <div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-5 profile-container " >
-                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/${summoner.profileIconId}.png|" th:alt="${summoner.profileIconId}" style="width:10%">
-                    <span class="ribbon" th:text="${summoner.summonerLevel}">0</span>
-                </div>
-                <div class="col-7">
-                    <th:block th:if="${summoner.name == null}">
-                        <p class="fs-6 fw-semibold text-primary" ><br/>소환사정보를 찾을 수 없습니다.</p>
-                    </th:block>
-                    <th:block th:if="${summoner.name != null}">
-                        <p class="name" th:text="${summoner.name}"></p>
-                        <p class="small time">최근 업데이트 : <span class="time" th:text="${summoner.revisionDate}"></span></p>
-                        <!--  visually-hidden  -->
-                        <div class="small">
-                            <p class="visually-hidden">summonerId : <span class="text-secondary" th:text="${summoner.id}">-</span></p>
-                            <p class="visually-hidden">accountId : <span class="text-secondary" th:text="${summoner.accountId}">-</span></p>
-                            <p class="visually-hidden">puuid : <span class="text-secondary" th:text="${summoner.puuid}">-</span></p>
-                        </div>
-                    </th:block>
-                </div>
-            </div>
         </div>
     </div>
 </th:block>
 
+<th:block>
+    <div class="row"  style="margin-top: 20px; margin-left: 50px; margin-right: 50px">
+        <div class="col-lg-10">
+            <div class="page-header">
+                <h1 id="navbars" style="margin-left: 200px;">LOL Search</h1>
+            </div>
 
-<div>
-    <p  th:text="${matchList}"></p>
-    <tr th:each="matchInfop : ${matchInfo}">
-        <td th:text="${matchInfop.MetadataDto.matchId}"></td>
-    </tr>
-</div>
-<!--//<div th:text="${matchInfo.metadataDto.participants}"> </div>-->
+            <div class="bs-component" style="margin-top: -50px; margin-right: -50px; margin-bottom: 10px; float: right">
+                <nav class="navbar-expand-lg" style="float: right">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarColor04">
+                            <form class="d-flex">
+                                <input class="form-control me-sm-2" type="search" placeholder="Search">
+                                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</th:block>
+<hr/>
+<th:block th:if="${not #strings.isEmpty(summoner.name)}">
+    <div class="card-body" border="1">
+        <div class="row" >
+            <table style="width: max-content; table-layout: auto; word-break: break-all; height: auto; margin-left: 20%; text-align: center">
+                <tr>
+                    <td rowspan="4">
+                        <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/${summoner.profileIconId}.png|" th:alt="${summoner.profileIconId}" style="width:100%">
+                    </td>
+                    <td rowspan="2">
+                        <th:block th:if="${summoner.name == null}">
+                            <p class="fs-6 fw-semibold text-primary" ><br/>소환사정보를 찾을 수 없습니다.</p>
+                        </th:block>
+                        <th:block th:if="${summoner.name != null}">
+                            <p class="name" th:text="${summoner.name}"></p>
+                        </th:block>
+                    </td>
+                    <td rowspan="2">
+                        <span>Level : </span><span class="ribbon" th:text="${summoner.summonerLevel}">0</span>
+                    </td>
+                    <td>Solo Rank</td>
+                    <!--            <td>queue1</td>-->
+                    <td>5x5 Rank</td>
+                    <!--            <td>queue2</td>-->
+                </tr>
+                <tr>
+                    <!--            <td>profileIcon</td>-->
+                    <!--            <td>name</td>-->
+                    <!--            <td>level</td>-->
+                    <td>tierImg1</td>
+                    <!--            <td>tierImg1</td>-->
+                    <td>tierImg2</td>
+                    <!--            <td>tierImg2</td>-->
+                </tr>
+                <tr>
+                    <!--            <td>profileIcon</td>-->
+                    <td rowspan="2" colspan="2">
+                        <p class="small time"><br/>최근 업데이트 : <span class="time" th:text="${summoner.revisionDate}"></span></p>
+                    </td>
+                    <!--            <td>revison</td>-->
+                    <td>tier1 rank1</td>
+                    <td>tier2 rank2</td>
+                </tr>
+                <tr>
+                    <!--            <td>profileIcon</td>-->
+                    <!--            <td>revison</td>-->
+                    <!--            <td>revison</td>-->
+                    <td>wins1 losses1</td>
+                    <td>wins2 losses2</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <th:block th:if="${not #strings.isEmpty(matchsInfo)}">
+        <div th:each = "match : ${matchsInfo}">
+            <th:block>
+                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(74,144,226)" >
+                    <div class="card-body">
+                        <table style="width: max-content; table-layout: auto; word-break: break-all; height: auto; text-align: center ; padding: 20px;">
+                            <tr>
+                                <td rowspan="2">championId</td>
+                                <td>spell1</td>
+                                <td>perks1</td>
+                                <td>k/d/a</td>
+                                <td>item0</td>
+                                <td>item1</td>
+                                <td>item2</td>
+                                <td>item3</td>
+                            </tr>
+                            <tr>
+                                <!--                            <td>championId</td>-->
+                                <td>spell2</td>
+                                <td>perks2</td>
+                                <td>cs/gold</td>
+                                <td>item4</td>
+                                <td>item5</td>
+                                <td>item6</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+        <div th:each = "match : ${matchsInfo}">
+            <div th:if = "${match.infoDto.getParticipants().getName()} == ${summoner.name} ">
+            <th:block>
+                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(242,54,77)" >
+                    <div class="card-body">
+                        <table style="width: max-content; table-layout: auto; word-break: break-all; height: auto; text-align: center ; padding: 20px;">
+                            <tr>
+                                <td rowspan="2">
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.11.1/img/champion/${}.png|">
+                                    championId
+                                </td>
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/<spell_name>.png|">
+                                    spell1
+                                </td>
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/<style_name>.png|">
+                                    perks1
+                                </td>
+                                <td>k/d/a</td>
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
+                                    item0
+                                </td>
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
+                                    item1
+                                </td>
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
+                                    item2
+                                </td>
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
+                                    item3
+                                </td>
+                            </tr>
+                            <tr>
+                                <!--                            <td>championId</td>-->
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/<spell_name>.png|">
+                                    spell2
+                                </td>
+                                <td>
+                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/<main_style_name>/<sub_style_name>/<sub_style_name>.png|">
+                                    perks2
+                                </td>
+                                <td>cs/gold</td>
+                                <td>
+                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">
+                                    item4
+                                </td>
+                                <td>
+                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">
+                                    item5
+                                </td>
+                                <td>
+                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">
+                                    item6
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+        </div>
+    </th:block>
+
+</th:block>
+
+<style>
+    td{
+        padding: 5px;
+    }
+    body {
+        font-family: Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+    }
+</style>
+
 </body>
 </html>
+
+
+<!--<div class="" style="margin-left: 200px; margin-right: 200px" >-->
+<!--    <div class="card-body">-->
+<!--        <div class="row">-->
+<!--            <div class="col-2 profile-container " >-->
+<!--                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/${summoner.profileIconId}.png|" th:alt="${summoner.profileIconId}" style="width:100%">-->
+<!--                <span class="ribbon" th:text="${summoner.summonerLevel}">0</span>-->
+<!--            </div>-->
+<!--            <div class="col-5">-->
+<!--                <th:block th:if="${summoner.name == null}">-->
+<!--                    <p class="fs-6 fw-semibold text-primary" ><br/>소환사정보를 찾을 수 없습니다.</p>-->
+<!--                </th:block>-->
+<!--                <th:block th:if="${summoner.name != null}">-->
+<!--                    <p class="name" th:text="${summoner.name}"></p>-->
+<!--                    <p class="small time">최근 업데이트 : <span class="time" th:text="${summoner.revisionDate}"></span></p>-->
+<!--                    &lt;!&ndash;  visually-hidden  &ndash;&gt;-->
+<!--                    <div class="small">-->
+<!--                        <p class="visually-hidden">summonerId : <span class="text-secondary" th:text="${summoner.id}">-</span></p>-->
+<!--                        <p class="visually-hidden">accountId : <span class="text-secondary" th:text="${summoner.accountId}">-</span></p>-->
+<!--                        <p class="visually-hidden">puuid : <span class="text-secondary" th:text="${summoner.puuid}">-</span></p>-->
+<!--                    </div>-->
+<!--                </th:block>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
