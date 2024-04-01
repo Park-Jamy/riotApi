@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
-@JsonIgnoreProperties
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class PerksDto {
     private PerkStatsDto statPerks;

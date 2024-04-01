@@ -3,7 +3,7 @@ package me.sangdosa.springbootdeveloper.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-@JsonIgnoreProperties
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class LeagueEntryDto {
     private String leagueId;

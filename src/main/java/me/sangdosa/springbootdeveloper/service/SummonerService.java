@@ -68,6 +68,7 @@ public class SummonerService {
                 HttpResponse response = callRiotApi(callUrl);
 
                 matchInfoDto = objectMapper.readValue(response.getEntity().getContent(), MatchInfoDto.class); // JSON형식을 DTO형식으로 변환
+                System.out.println(response.getEntity().getContentType());
 
             } catch (IOException e) {
                 e.printStackTrace();

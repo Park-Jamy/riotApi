@@ -95,102 +95,74 @@
 
     <th:block th:if="${not #strings.isEmpty(matchsInfo)}">
         <div th:each = "match : ${matchsInfo}">
-            <th:block>
-                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(74,144,226)" >
-                    <div class="card-body">
-                        <table style="width: max-content; table-layout: auto; word-break: break-all; height: auto; text-align: center ; padding: 20px;">
-                            <tr>
-                                <td rowspan="2">championId</td>
-                                <td>spell1</td>
-                                <td>perks1</td>
-                                <td>k/d/a</td>
-                                <td>item0</td>
-                                <td>item1</td>
-                                <td>item2</td>
-                                <td>item3</td>
-                            </tr>
-                            <tr>
-                                <!--                            <td>championId</td>-->
-                                <td>spell2</td>
-                                <td>perks2</td>
-                                <td>cs/gold</td>
-                                <td>item4</td>
-                                <td>item5</td>
-                                <td>item6</td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </th:block>
-        </div>
-        <div th:each = "match : ${matchsInfo}">
-            <div th:if = "${match.infoDto.getParticipants().getName()} == ${summoner.name} ">
-            <th:block>
-                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(242,54,77)" >
-                    <div class="card-body">
-                        <table style="width: max-content; table-layout: auto; word-break: break-all; height: auto; text-align: center ; padding: 20px;">
-                            <tr>
-                                <td rowspan="2">
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.11.1/img/champion/${}.png|">
-                                    championId
-                                </td>
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/<spell_name>.png|">
-                                    spell1
-                                </td>
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/<style_name>.png|">
-                                    perks1
-                                </td>
-                                <td>k/d/a</td>
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
-                                    item0
-                                </td>
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
-                                    item1
-                                </td>
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
-                                    item2
-                                </td>
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">
-                                    item3
-                                </td>
-                            </tr>
-                            <tr>
-                                <!--                            <td>championId</td>-->
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/<spell_name>.png|">
-                                    spell2
-                                </td>
-                                <td>
-                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/<main_style_name>/<sub_style_name>/<sub_style_name>.png|">
-                                    perks2
-                                </td>
-                                <td>cs/gold</td>
-                                <td>
-                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">
-                                    item4
-                                </td>
-                                <td>
-                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">
-                                    item5
-                                </td>
-                                <td>
-                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">
-                                    item6
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </th:block>
-        </div>
+            <span class="time" th:text="${match}"></span>
+<!--            <div th:if = "${match.infoDto.getParticipants().getName()} == ${summoner.name} ">-->
+<!--            <th:block>-->
+<!--                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(242,54,77)" >-->
+<!--&lt;!&ndash;                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(74,144,226)" >&ndash;&gt;-->
+<!--                    <div class="card-body">-->
+<!--                        <table style="width: max-content; table-layout: auto; word-break: break-all; height: auto; text-align: center ; padding: 20px;">-->
+<!--                            <tr>-->
+<!--                                <td rowspan="2">-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.11.1/img/champion/${}.png|">-->
+<!--                                    championId-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/<spell_name>.png|">-->
+<!--                                    spell1-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/<style_name>.png|">-->
+<!--                                    perks1-->
+<!--                                </td>-->
+<!--                                <td>k/d/a</td>-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">-->
+<!--                                    item0-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">-->
+<!--                                    item1-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">-->
+<!--                                    item2-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${match}.png|">-->
+<!--                                    item3-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                &lt;!&ndash;                            <td>championId</td>&ndash;&gt;-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/<spell_name>.png|">-->
+<!--                                    spell2-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/<main_style_name>/<sub_style_name>/<sub_style_name>.png|">-->
+<!--                                    perks2-->
+<!--                                </td>-->
+<!--                                <td>cs/gold</td>-->
+<!--                                <td>-->
+<!--                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">-->
+<!--                                    item4-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">-->
+<!--                                    item5-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <img th:url="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${아이템 코드}.png">-->
+<!--                                    item6-->
+<!--                                </td>-->
+<!--                                <td></td>-->
+<!--                            </tr>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </th:block>-->
+<!--        </div>-->
         </div>
     </th:block>
 
