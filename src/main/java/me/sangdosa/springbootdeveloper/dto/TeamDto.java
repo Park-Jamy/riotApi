@@ -8,4 +8,6 @@ import lombok.Data;
 public class TeamDto {
     private int teamId;
     private boolean win;
+    private BanDto[] bans;
+    private ObjectivesDto objectives;
 }

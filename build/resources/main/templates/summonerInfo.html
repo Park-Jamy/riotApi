@@ -53,6 +53,7 @@
                         </th:block>
                         <th:block th:if="${summoner.name != null}">
                             <p class="name" th:text="${summoner.name}"></p>
+                            <p class="name" th:text="${summoner.getPuuid()}"></p>
                         </th:block>
                     </td>
                     <td rowspan="2">
@@ -95,7 +96,73 @@
 
     <th:block th:if="${not #strings.isEmpty(matchsInfo)}">
         <div th:each = "match : ${matchsInfo}">
-            <span class="time" th:text="${match}"></span>
+            <div th:each = "info : ${match.getInfo().participants}">
+                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(242,54,77)" >
+
+                <th:block  th:if="${info.getSummonerName() == summoner.name}">
+                    <p th:text="${info.getSummonerName()}"></p>
+                    <table style="width: max-content; table-layout: auto; word-break: break-all; height: auto; text-align: center ; padding: 20px;">
+                        <tr>
+                            <td rowspan="2">
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/${info.getChampionName()}.png|">
+                                championId
+                            </td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/spell/${info.getSpell1Casts()}.png|">
+                                spell1
+                            </td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${info.getPerks()}.png|">
+                                perks1
+                            </td>
+                            <td>k/d/a</td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${info.getItem0()}.png|">
+                                item0
+                            </td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${info.getItem1()}.png|">
+                                item1
+                            </td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${info.getItem2()}.png|">
+                                item2
+                            </td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${info.getItem3()}.png|">
+                                item3
+                            </td>
+                        </tr>
+                        <tr>
+                            <!--                            <td>championId</td>-->
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/${info.getSpell2Casts()}.png|">
+                                spell2
+                            </td>
+                            <td>
+<!--                               <img th:src="|https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/<main_style_name>/<sub_style_name>/<sub_style_name>.png|">-->
+                                perks2
+                            </td>
+                            <td>cs/gold</td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${info.getItem4()}.png|">
+                                item4
+                            </td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${info.getItem5()}.png|">
+                                item5
+                            </td>
+                            <td>
+                                <img th:src="|https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${info.getItem6()}.png|">
+                                item6
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                </th:block>
+                </div>
+            </div>
 <!--            <div th:if = "${match.infoDto.getParticipants().getName()} == ${summoner.name} ">-->
 <!--            <th:block>-->
 <!--                <div class="card mh-100"   style="margin-left: 15%; margin-right: 15%; background: rgb(242,54,77)" >-->

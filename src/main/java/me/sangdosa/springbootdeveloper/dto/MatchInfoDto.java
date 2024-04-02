@@ -8,6 +8,5 @@ import me.sangdosa.springbootdeveloper.dto.*;
 @Data
 public class MatchInfoDto {
    private MetadataDto metadataDto;
-   private String matchId;
-   //private InfoDto infoDto;
+   private InfoDto infoDto;
 }

@@ -2,6 +2,7 @@ package me.sangdosa.springbootdeveloper.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.sangdosa.springbootdeveloper.dto.MatchDto;
 import me.sangdosa.springbootdeveloper.dto.MatchInfoDto;
 import me.sangdosa.springbootdeveloper.dto.SummonerDto;
 import me.sangdosa.springbootdeveloper.constant.RiotConstant;
@@ -56,27 +57,26 @@ public class SummonerService {
         return matchList;
     }
 
-    public List<MatchInfoDto> callRiotAPIMatchByMatchId(List<String> matchId) {
+    public List<MatchDto> callRiotAPIMatchByMatchId(List<String> matchId) {
 
-        List<MatchInfoDto> matchInfosDto = new ArrayList<>();
+        List<MatchDto> matchsDto = new ArrayList<>();
 
         int matchListLen = matchId.size();
         for(int i = 0; i < matchListLen; i++) {
-            MatchInfoDto matchInfoDto = new MatchInfoDto(); //DTO 초기화
+            MatchDto matchDto = new MatchDto(); //DTO 초기화
             String callUrl = API_URL_ASIA + "/lol/match/v5/matches/" + matchId.get(i) + "?api_key=" + apiKey; // URL 세팅
             try {
                 HttpResponse response = callRiotApi(callUrl);
 
-                matchInfoDto = objectMapper.readValue(response.getEntity().getContent(), MatchInfoDto.class); // JSON형식을 DTO형식으로 변환
-                System.out.println(response.getEntity().getContentType());
+                matchDto = objectMapper.readValue(response.getEntity().getContent(), MatchDto.class); // JSON형식을 DTO형식으로 변환
 
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                matchInfosDto.add(matchInfoDto);
+                matchsDto.add(matchDto);
             }
         }
-        return matchInfosDto;
+        return matchsDto;
     }
 
     // Riot API와 통신

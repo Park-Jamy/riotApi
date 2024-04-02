@@ -11,7 +11,6 @@ public class InfoDto {
     private String gameName;
     private String gameMode;
     private String gameType;
-    private List<ParticipantDto> participants;
-    private List<TeamDto> teams;
-
+    private ParticipantDto[] participants;
+    private TeamDto[] teams;
 }

@@ -10,5 +10,5 @@ import java.util.List;
 public class MetadataDto {
     private String dataVersion;
     private String matchId;
-    //private List<String> participants;
+    private String[] participants;
 }

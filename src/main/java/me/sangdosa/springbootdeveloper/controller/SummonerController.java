@@ -1,6 +1,7 @@
 package me.sangdosa.springbootdeveloper.controller;
 
 import lombok.RequiredArgsConstructor;
+import me.sangdosa.springbootdeveloper.dto.MatchDto;
 import me.sangdosa.springbootdeveloper.dto.MatchInfoDto;
 import me.sangdosa.springbootdeveloper.dto.SummonerDto;
 import me.sangdosa.springbootdeveloper.service.SummonerService;
@@ -33,7 +34,7 @@ public class SummonerController {
     public String SummonerByName(Model model, @PathVariable String summonerId) {
         SummonerDto summoner = new SummonerDto(); // 소환사 정보
         List<String> matchList = new ArrayList<>(); // 매치ID
-        List<MatchInfoDto> matchsInfo = new ArrayList<>();
+        List<MatchDto> matchsInfo = new ArrayList<>();
 
         // 파라미터값 공백 체크
         summonerId = summonerId.replaceAll(" ","%20");
