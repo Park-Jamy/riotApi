@@ -16,7 +16,7 @@
 - 주요 데이터는 MatchId가 존재
 - 전송 URL: API_URL_ASIA + "/lol/match/v5/matches/by-puuid/" + puuid + "/ids?api_key=" + apiKey;
 - Summoner-V4 API를 통해 얻은 puuid으로 MatchId 리스트 조회
-- 리스트 형식으로 리턴 받기 위해서 BufferedReader에서 HttpClient으로 호출 방식 변경
+- 리스트 형식으로 리턴 받기 위해서 HttpUrlConnection에서 HttpClient으로 호출 방식 변경
 - match-id 값을 통해 Match에 대한 데이터 조회
 - 주요 데이터는 kills, cs, gold 등이 존재
 - 전송 URL: API_URL_ASIA + "/lol/match/v5/matches + matchId + "?api_key=" + apiKey;
@@ -25,3 +25,5 @@
 - 소환사 summoner-id 값을 통해 summoner의 league 데이터 조회
 - 주요 데이터는 wins, losses, tier, leaguePoint 등
 - 전송 URL: API_URL_KR + "/lol/league/v4/entries/by-summoner/" + summoner_id + "?api_key=" + apiKey;
+
+* API 통신에 대한 HTTP 통신 라이브러리를 HttpClient와 HttpUrlConnection 함수를 모두 개발 및 비교
