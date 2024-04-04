@@ -37,6 +37,8 @@ dependencies {
 	compile('org.apache.httpcomponents:httpclient:4.5.13')
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+	compile('org.json:json:20211205')
+
 	/* Web 
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-hateoas')

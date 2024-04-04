@@ -23,7 +23,7 @@ public class ParticipantDto {
     private int item5;
     private int item6;
     private int goldEarned;
-    private int totalminionsKilled;
+    private int totalMinionsKilled;
     private PerksDto perks;               // https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png //  //https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7200_Domination.png
     private int teamId;
     private boolean win;
